@@ -1,0 +1,13 @@
+# This file describes a Fastly Compute@Edge package. To learn more visit:
+# https://developer.fastly.com/reference/fastly-toml/
+
+authors = ["initd@outlook.com"]
+description = "Using fastly cdn for origin"
+language = "javascript"
+manifest_version = 2
+name = "fastly-cdn"
+service_id = ""
+[local_server]
+  [local_server.backends]
+    [local_server.backends.origin_0]
+      url = "https://github.com"
