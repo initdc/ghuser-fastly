@@ -1,6 +1,6 @@
 const ORIGIN = "origin_0";
 const PROTOCOL = "https";
-const HOST = "github.com"
+const HOST = "github.com";
 
 addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
 
@@ -9,15 +9,16 @@ async function handleRequest(event) {
   const method = request.method;
   if (request.method !== "GET") return MethodNotAllowed(method);
 
-  const cacheUrl = new URL(request.url);
-  const { pathname, search } = cacheUrl;
+  const originUrl = new URL(request.url);
+  originUrl.host = HOST;
 
-  const newReq = new Request(`${PROTOCOL}://${HOST}${pathname}${search}`, request);
+  const newReq = new Request(originUrl.toString(), request);
   newReq.headers.set("Host", HOST);
 
   response = await fetch(newReq, {
     backend: ORIGIN,
   });
+
   // response = new Response(response.body, response);
   return response;
 }

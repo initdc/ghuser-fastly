@@ -10,4 +10,4 @@ service_id = ""
 [local_server]
   [local_server.backends]
     [local_server.backends.origin_0]
-      url = "https://github.com"
+      url = "https://example.com"
