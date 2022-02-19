@@ -5,7 +5,7 @@ authors = ["initd@outlook.com"]
 description = "Using fastly cdn for origin"
 language = "javascript"
 manifest_version = 2
-name = "fastly-cdn"
+name = "ghuser-fastly"
 service_id = ""
 [local_server]
   [local_server.backends]

@@ -1,5 +1,6 @@
-const PROCOTOL = "https";
-const HOST = "github.com";
+const PROTOCOL = "https";
+const HOST = "githubusercontent.com";
+let fullHost = "";
 
 addEventListener("fetch", (event) => event.respondWith(handleRequest(event)));
 
@@ -16,10 +17,15 @@ async function handleRequest(event) {
 
   if (!response) {
     const originUrl = new URL(reqUrl);
-    originUrl.host = HOST;
+    const originHost= originUrl.host
+    const subHost = originHost.split('-')[0]
+    fullHost = `${subHost}.${HOST}`
+    
+    originUrl.protocol = PROTOCOL
+    originUrl.host = fullHost;
 
     const newReq = new Request(originUrl.toString(), request);
-    newReq.headers.set("Host", HOST);
+    newReq.headers.set("Host", fullHost);
 
     response = await fetch(newReq);
 
